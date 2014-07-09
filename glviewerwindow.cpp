@@ -1,43 +1,35 @@
 #include "glviewerwindow.h"
 
-GLViewerWindow::GLViewerWindow()
-{
-}
-
-
-
-#include "openglwindow.h"
-
 #include <QtCore/QCoreApplication>
 
 #include <QtGui/QOpenGLContext>
 #include <QtGui/QOpenGLPaintDevice>
 #include <QtGui/QPainter>
 
-OpenGLWindow::OpenGLWindow(QWindow *parent)
-    : QWindow(parent)
-    , m_update_pending(false)
-    , m_animating(false)
-    , m_context(0)
-    , m_device(0)
+GLViewerWindow::GLViewerWindow(QWindow *parent)
+  : QWindow(parent)
+  , m_update_pending(false)
+  , m_animating(false)
+  , m_context(0)
+  , m_device(0)
 {
-    setSurfaceType(QWindow::OpenGLSurface);
+  setSurfaceType(QWindow::OpenGLSurface);
 }
 
-OpenGLWindow::~OpenGLWindow()
+GLViewerWindow::~GLViewerWindow()
 {
     delete m_device;
 }
-void OpenGLWindow::render(QPainter *painter)
+void GLViewerWindow::render(QPainter *painter)
 {
     Q_UNUSED(painter);
 }
 
-void OpenGLWindow::initialize()
+void GLViewerWindow::initialize()
 {
 }
 
-void OpenGLWindow::render()
+void GLViewerWindow::render()
 {
     if (!m_device)
         m_device = new QOpenGLPaintDevice;
@@ -50,7 +42,7 @@ void OpenGLWindow::render()
     render(&painter);
 }
 
-void OpenGLWindow::renderLater()
+void GLViewerWindow::renderLater()
 {
     if (!m_update_pending) {
         m_update_pending = true;
@@ -58,7 +50,7 @@ void OpenGLWindow::renderLater()
     }
 }
 
-bool OpenGLWindow::event(QEvent *event)
+bool GLViewerWindow::event(QEvent *event)
 {
     switch (event->type()) {
     case QEvent::UpdateRequest:
@@ -70,7 +62,7 @@ bool OpenGLWindow::event(QEvent *event)
     }
 }
 
-void OpenGLWindow::exposeEvent(QExposeEvent *event)
+void GLViewerWindow::exposeEvent(QExposeEvent *event)
 {
     Q_UNUSED(event);
 
@@ -78,7 +70,7 @@ void OpenGLWindow::exposeEvent(QExposeEvent *event)
         renderNow();
 }
 
-void OpenGLWindow::renderNow()
+void GLViewerWindow::renderNow()
 {
     if (!isExposed())
         return;
@@ -108,7 +100,7 @@ void OpenGLWindow::renderNow()
         renderLater();
 }
 
-void OpenGLWindow::setAnimating(bool animating)
+void GLViewerWindow::setAnimating(bool animating)
 {
     m_animating = animating;
 
