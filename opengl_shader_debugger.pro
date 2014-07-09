@@ -14,9 +14,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    glviewerwidget.cpp
+    glviewerwindow.cpp
 
 HEADERS  += mainwindow.h \
-    glviewerwidget.h
+    glviewerwindow.h
 
 FORMS    += mainwindow.ui
