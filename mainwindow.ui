@@ -35,9 +35,9 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="vertexLoadButton">
             <property name="text">
-             <string>PushButton</string>
+             <string>Load Vertex Shader</string>
             </property>
            </widget>
           </item>
@@ -66,9 +66,9 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="fragmentLoadButton">
             <property name="text">
-             <string>PushButton</string>
+             <string>Load Fragment Shader</string>
             </property>
            </widget>
           </item>
@@ -106,26 +106,50 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionOpen"/>
-    <addaction name="actionSave"/>
+    <widget class="QMenu" name="menuOpen">
+     <property name="title">
+      <string>Open</string>
+     </property>
+     <addaction name="actionVertex_Shader_Open"/>
+     <addaction name="actionFragment_Shader_Open"/>
+    </widget>
+    <widget class="QMenu" name="menuSave">
+     <property name="title">
+      <string>Save</string>
+     </property>
+     <addaction name="actionVertex_Shader_Save"/>
+     <addaction name="actionFragment_Shader_Save"/>
+    </widget>
+    <addaction name="menuOpen"/>
+    <addaction name="menuSave"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
-  <action name="actionOpen">
-   <property name="text">
-    <string>Open</string>
-   </property>
-  </action>
-  <action name="actionSave">
-   <property name="text">
-    <string>Save</string>
-   </property>
-  </action>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionVertex_Shader_Open">
+   <property name="text">
+    <string>Vertex Shader</string>
+   </property>
+  </action>
+  <action name="actionFragment_Shader_Open">
+   <property name="text">
+    <string>Fragment Shader</string>
+   </property>
+  </action>
+  <action name="actionVertex_Shader_Save">
+   <property name="text">
+    <string>Vertex Shader</string>
+   </property>
+  </action>
+  <action name="actionFragment_Shader_Save">
+   <property name="text">
+    <string>Fragment Shader</string>
    </property>
   </action>
  </widget>
@@ -148,5 +172,109 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionFragment_Shader_Open</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openFragmentShaderFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>274</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>vertexLoadButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>loadVertexShader()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>62</x>
+     <y>151</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>274</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fragmentLoadButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>loadFragmentShader()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>70</x>
+     <y>289</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>274</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionVertex_Shader_Open</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openVertexShaderFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>274</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFragment_Shader_Save</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>saveFragmentShaderFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>274</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionVertex_Shader_Save</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>saveVertexShaderFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>274</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>loadVertexShader()</slot>
+  <slot>loadFragmentShader()</slot>
+  <slot>openVertexShaderFile()</slot>
+  <slot>openFragmentShaderFile()</slot>
+  <slot>saveVertexShaderFile()</slot>
+  <slot>saveFragmentShaderFile()</slot>
+ </slots>
 </ui>
