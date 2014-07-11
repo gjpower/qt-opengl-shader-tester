@@ -33,6 +33,8 @@ void MainWindow::openVertexShaderFile() {
 
   QTextStream in(&file);
   ui->plainTextEdit->setPlainText(in.readAll());
+
+  file.close();
 }
 
 void MainWindow::openFragmentShaderFile() {
@@ -44,12 +46,38 @@ void MainWindow::openFragmentShaderFile() {
 
   QTextStream in(&file);
   ui->textEdit->setText(in.readAll());
+
+  file.close();
 }
 
 void MainWindow::saveVertexShaderFile() {
   QString fileName = QFileDialog::getSaveFileName(this,tr("Save File"), "", tr("OpenGL shader language file (*.glsl)"));
+  QFile file(fileName);
+
+  if (!file.open(QIODevice::WriteOnly | QIODevice::Text ))
+    return;
+
+  QString text = ui->plainTextEdit->toPlainText();
+
+  QTextStream out(&file);
+
+  out << text;
+
+  file.close();
 }
 
 void MainWindow::saveFragmentShaderFile() {
   QString fileName = QFileDialog::getSaveFileName(this,tr("Save File"), "", tr("OpenGL shader language file (*.glsl)"));
+  QFile file(fileName);
+
+  if (!file.open(QIODevice::WriteOnly | QIODevice::Text ))
+    return;
+
+  QString text = ui->textEdit->toPlainText();
+
+  QTextStream out(&file);
+
+  out << text;
+
+  file.close();
 }
